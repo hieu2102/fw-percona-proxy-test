@@ -1,0 +1,94 @@
+set user:1000 "John Doe"
+get user:1000
+setex session:token:1001 3600 "abc123"
+setnx user:1001:login_attempts 0
+incr user:1001:login_attempts
+decr user:1001:login_attempts
+incrby pageviews 10
+decrby stock:item1001 5
+strlen user:1000
+append user:1000 " Jr."
+getrange user:1000 0 5
+setrange user:1000 0 "Jane"
+hset user:1001 name "Jane Smith" age 30 city "New York"
+hget user:1001 name
+hmget user:1001 name age city
+hgetall user:1001
+hincrby user:1001 age 1
+hsetnx user:1001 email "jane@example.com"
+hexists user:1001 email
+hkeys user:1001
+hvals user:1001
+hlen user:1001
+hstrlen user:1001 name
+hrandfield user:1001
+rpush tasks "Send email" "Update database" "Generate report"
+lrange notifications 0 -1
+lrange tasks 0 -1
+lpop notifications
+rpop tasks
+llen notifications
+lindex tasks 0
+rpush tasks "Initial task"
+lrem notifications 0 "Welcome to our service"
+ltrim tasks 0 1
+sadd active_users user1001 user1002 user1003
+smembers active_users
+sismember active_users user1001
+scard active_users
+spop active_users
+srandmember active_users
+srem active_users user1003
+smismember active_users user1001 user1002 user1004
+zadd leaderboard 100 player1 90 player2 80 player3
+zrange leaderboard 0 -1 withscores
+zrevrange leaderboard 0 -1 withscores
+zrangebyscore leaderboard 80 100 withscores
+zrevrangebyscore leaderboard 100 80 withscores
+zincrby leaderboard 5 player2
+zrem leaderboard player3
+zrank leaderboard player1
+zrevrank leaderboard player1
+zcard leaderboard
+zscore leaderboard player1
+zcount leaderboard 80 100
+zmscore leaderboard player1 player2
+zrandmember leaderboard
+zpopmax leaderboard
+zpopmin leaderboard
+pfadd unique_visitors user1 user2 user3
+pfcount unique_visitors
+geohash locations Palermo Catania
+geopos locations Palermo Catania
+georadius locations 15 37 100 km
+setbit user:1001:active_days 100 1
+getbit user:1001:active_days 100
+bitcount user:1001:active_days
+xreadgroup GROUP order_processors worker1 COUNT 10 STREAMS order_stream ">"
+xpending order_stream order_processors
+xclaim order_stream order_processors worker2 3600000 1623456789123-0
+xautoclaim order_stream order_processors worker3 3600000 0-0 COUNT 10
+publish news_channel "Breaking news: New feature launched!"
+set user:1002 "Alice"
+incrby user:1002:points 50
+exists user:1000
+del user:1000
+unlink user:1001
+expire user:1002 3600
+ttl user:1002
+persist user:1002
+type user:1003
+ping
+echo "Hello Redis"
+time
+client getname
+client setname web-server-1
+cluster slots
+cluster keyslot user:1001
+scan 0 MATCH user:* COUNT 10
+hscan user:1001 0 MATCH n*
+sscan active_users 0
+zscan leaderboard 0
+info
+info memory
+info clients
