@@ -1,3 +1,4 @@
+#command | expected reply |ignore error?
 # 1. String operations
 SET mykey 'Hello'|OK
 GET mykey|Hello
